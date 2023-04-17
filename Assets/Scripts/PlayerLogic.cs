@@ -41,7 +41,7 @@ public class PlayerLogic : MonoBehaviour
         UpdateMovementInput();
         UpdateMovementDirection();
         
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && !_isAttacking)
         {
             SetIsAttacking(true);
         }
