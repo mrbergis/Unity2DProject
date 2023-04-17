@@ -42,9 +42,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets/Scripts/PlayerLogic.cs" />
+     <Compile Include="Assets/Scripts/AttackBehaviour.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/Scripts" />
+     <Folder Include="Assets/Animations" />
+     <Folder Include="Assets/Animator" />
      <Folder Include="Assets/Spritesheets" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.3.23f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

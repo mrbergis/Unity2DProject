@@ -24,6 +24,8 @@ public class PlayerLogic : MonoBehaviour
     
     Animator _animator;
     
+    bool _isAttacking = false;
+    
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -37,12 +39,28 @@ public class PlayerLogic : MonoBehaviour
         
         if(Input.GetButtonDown("Fire1"))
         {
-            _animator.SetBool("IsAttacking", true);
+            _isAttacking = true;
+            UpdateAttackAnimation();
+        }
+    }
+    
+    void UpdateAttackAnimation()
+    {
+        if (_animator)
+        {
+            _animator.SetBool("IsAttacking", _isAttacking);
         }
     }
     
     void UpdateMovementInput()
     {
+        if(_isAttacking)
+        {
+            _movementVelocity = Vector2.zero;
+
+            return;
+        }
+        
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -57,6 +75,11 @@ public class PlayerLogic : MonoBehaviour
 
     void UpdateMovementDirection()
     {
+        if (_isAttacking)
+        {
+            return;
+        }
+        
         if (Mathf.Abs(_horizontalInput) > Mathf.Abs(_verticalInput))
         {
             if (_horizontalInput > 0)
@@ -88,9 +111,20 @@ public class PlayerLogic : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (_isAttacking)
+        {
+            return;
+        }
+        
         if (_rigidbody)
         {
             _rigidbody.MovePosition(_rigidbody.position + _movementVelocity * Time.deltaTime);
         }
+    }
+    
+    public void SetIsAttacking(bool isAttacking)
+    {
+        _isAttacking = isAttacking;
+        UpdateAttackAnimation();
     }
 }
