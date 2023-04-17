@@ -30,20 +30,38 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField]
     List<BoxCollider2D> hitColliders = new List<BoxCollider2D>();
     
+    const int MAX_HEALTH = 5;
+    int _health = MAX_HEALTH;
+    
+    const float MAX_INVINCIBILITY_TIME = 0.5f;
+    float _invincibilityTime = 0.0f;
+    
+    bool _isDead = false;
+    
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        
+        UIManager.Instance.SetHealth(_health);
     }
     
     void Update()
     {
+        if(_isDead)
+        {
+            return;
+        }
         UpdateMovementInput();
         UpdateMovementDirection();
         
         if(Input.GetButtonDown("Fire1") && !_isAttacking)
         {
             SetIsAttacking(true);
+        }
+        if(_invincibilityTime > 0.0f)
+        {
+            _invincibilityTime -= Time.deltaTime;
         }
     }
     
@@ -114,7 +132,7 @@ public class PlayerLogic : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if (_isAttacking)
+        if (_isAttacking && _isDead)
         {
             return;
         }
@@ -157,5 +175,33 @@ public class PlayerLogic : MonoBehaviour
                 hitColliders[index].enabled = false;
             }
         }
+    }
+    
+    public void TakeDamage()
+    {
+        if(_invincibilityTime > 0.0f)
+        {
+            return;
+        }
+
+        --_health;
+        _health = Mathf.Clamp(_health, 0, MAX_HEALTH);
+
+        UIManager.Instance.SetHealth(_health);
+        _invincibilityTime = MAX_INVINCIBILITY_TIME;
+
+        if (_health == 0)
+        {
+            Die();
+        }
+        else
+        {
+
+        }
+    }
+    
+    void Die()
+    {
+        _isDead = true;
     }
 }

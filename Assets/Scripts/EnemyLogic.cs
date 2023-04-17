@@ -53,6 +53,16 @@ public class EnemyLogic : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _attackDirection = -_attackDirection;
+        
+        Rigidbody2D rigidBody = collision.rigidbody;
+        if(rigidBody && rigidBody.tag == "Player")
+        {
+            PlayerLogic playerLogic = rigidBody.GetComponent<PlayerLogic>();
+            if(playerLogic)
+            {
+                playerLogic.TakeDamage();
+            }
+        }
     }
     
     public void SetEnemyState(EnemyState enemyState)
