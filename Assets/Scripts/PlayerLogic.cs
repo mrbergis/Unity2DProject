@@ -8,7 +8,8 @@ public enum MoveDirection
     Down,
     Up,
     Left,
-    Right
+    Right,
+    MAX
 }
 public class PlayerLogic : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class PlayerLogic : MonoBehaviour
     
     bool _isAttacking = false;
     
+    [SerializeField]
+    List<BoxCollider2D> hitColliders = new List<BoxCollider2D>();
+    
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -39,8 +43,7 @@ public class PlayerLogic : MonoBehaviour
         
         if(Input.GetButtonDown("Fire1"))
         {
-            _isAttacking = true;
-            UpdateAttackAnimation();
+            SetIsAttacking(true);
         }
     }
     
@@ -126,5 +129,33 @@ public class PlayerLogic : MonoBehaviour
     {
         _isAttacking = isAttacking;
         UpdateAttackAnimation();
+
+        if(_isAttacking)
+        {
+            ActivateHitCollider();
+        }
+        else
+        {
+            DeactivateAllHitColliders();
+        }
+    }
+    
+    void ActivateHitCollider()
+    {
+        if(hitColliders.Count > (int)_movementDirection && hitColliders[(int)_movementDirection])
+        {
+            hitColliders[(int)_movementDirection].enabled = true;
+        }
+    }
+
+    void DeactivateAllHitColliders()
+    {
+        for(int index = 0; index < (int)MoveDirection.MAX; ++index)
+        {
+            if (hitColliders.Count > index && hitColliders[index])
+            {
+                hitColliders[index].enabled = false;
+            }
+        }
     }
 }
