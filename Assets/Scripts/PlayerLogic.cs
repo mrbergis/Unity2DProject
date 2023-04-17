@@ -36,12 +36,27 @@ public class PlayerLogic : MonoBehaviour
     const float MAX_INVINCIBILITY_TIME = 0.5f;
     float _invincibilityTime = 0.0f;
     
+    AudioSource _audioSource;
+
+    [SerializeField]
+    AudioClip gotHitSound;
+
+    [SerializeField]
+    AudioClip swordSlashSound;
+
+    [SerializeField]
+    AudioClip deathSound;
+
+    [SerializeField]
+    AudioClip victorySound;
+    
     bool _isDead = false;
     
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         
         UIManager.Instance.SetHealth(_health);
     }
@@ -58,6 +73,7 @@ public class PlayerLogic : MonoBehaviour
         if(Input.GetButtonDown("Fire1") && !_isAttacking)
         {
             SetIsAttacking(true);
+            PlaySound(swordSlashSound);
         }
         if(_invincibilityTime > 0.0f)
         {
@@ -196,12 +212,20 @@ public class PlayerLogic : MonoBehaviour
         }
         else
         {
-
+            PlaySound(gotHitSound);
         }
     }
     
     void Die()
     {
         _isDead = true;
+        PlaySound(deathSound);
+    }
+    void PlaySound(AudioClip sound)
+    {
+        if(_audioSource && sound)
+        {
+            _audioSource.PlayOneShot(sound);
+        }
     }
 }
