@@ -43,6 +43,8 @@
   <ItemGroup>
      <Compile Include="Assets/Scripts/PlayerLogic.cs" />
      <Compile Include="Assets/Scripts/AttackBehaviour.cs" />
+     <Compile Include="Assets/Scripts/EnemyLogic.cs" />
+     <Compile Include="Assets/Scripts/EnemySpawnBehaviour.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/Scripts" />
