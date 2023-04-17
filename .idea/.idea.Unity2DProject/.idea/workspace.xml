@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3322da4f-e1b1-4aac-8bbe-24b12ab1f34b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity2DProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity2DProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animator/Zelda.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animator/Zelda.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerLogic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerLogic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1681740779937</updated>
-      <workItem from="1681740795062" duration="1881000" />
+      <workItem from="1681740795062" duration="3494000" />
     </task>
     <servers />
   </component>

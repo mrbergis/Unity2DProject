@@ -34,6 +34,11 @@ public class PlayerLogic : MonoBehaviour
     {
         UpdateMovementInput();
         UpdateMovementDirection();
+        
+        if(Input.GetButtonDown("Fire1"))
+        {
+            _animator.SetBool("IsAttacking", true);
+        }
     }
     
     void UpdateMovementInput()
