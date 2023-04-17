@@ -45,6 +45,7 @@
      <Compile Include="Assets/Scripts/AttackBehaviour.cs" />
      <Compile Include="Assets/Scripts/EnemyLogic.cs" />
      <Compile Include="Assets/Scripts/EnemySpawnBehaviour.cs" />
+     <Compile Include="Assets/Scripts/UIManager.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/Scripts" />
